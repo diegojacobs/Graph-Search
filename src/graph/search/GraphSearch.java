@@ -5,6 +5,8 @@
  */
 package graph.search;
 
+import UI.Principal;
+
 /**
  *
  * @author Diego Jacobs
@@ -16,6 +18,8 @@ public class GraphSearch {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Principal mainUI = new Principal();
+        mainUI.setVisible(true);
     }
     
 }

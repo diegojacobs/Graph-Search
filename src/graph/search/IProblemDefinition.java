@@ -5,10 +5,16 @@
  */
 package graph.search;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Diego Jacobs
  */
 public interface IProblemDefinition {
-    
+    public ArrayList<Action> actions(Node node);
+    public float stepCost(Node fromNode, Node toNode, Action action); 
+    public float pathCost(ArrayList<Node> path);
+    public boolean goalTest(Node goal);
+    public Node result(Node node, Action action);       
 }
