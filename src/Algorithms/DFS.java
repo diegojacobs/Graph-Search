@@ -20,7 +20,7 @@ import java.util.Stack;
 public class DFS implements IProblemDefinition{
     private Graph Graph;
     private ArrayList<Node> FinalPath;
-    private final ArrayList<Node> Checked;
+    private ArrayList<Node> Checked;
     
     public DFS(int sizeX, int sizeY, BufferedImage image){
         this.Graph = new Graph(sizeX, sizeY);
@@ -83,7 +83,7 @@ public class DFS implements IProblemDefinition{
     }
 
     @Override
-    public float stepCost(Node fromNode, Node toNode, Action action) {
+    public double stepCost(Node fromNode, Node toNode, Action action) {
         if(fromNode.equals(action.getFrom()) && toNode.equals(action.getTo())){
             return 1;
         }
@@ -92,7 +92,7 @@ public class DFS implements IProblemDefinition{
     }
 
     @Override
-    public float pathCost(ArrayList<Node> path) {
+    public double pathCost(ArrayList<Node> path) {
         float cost = 0;
         
         for(int i = 0; i < path.size(); i++){
@@ -105,7 +105,7 @@ public class DFS implements IProblemDefinition{
 
     @Override
     public boolean goalTest(Node goal) {
-        return this.Graph.getEndList().contains(goal);
+        return this.Graph.getGoals().contains(goal);
     }
 
     @Override

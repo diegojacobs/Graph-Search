@@ -78,7 +78,7 @@ public class DisplayGraph extends JPanel{
     private void paintPath(Graphics graphics) {       
         graphics.setColor(Color.MAGENTA);
         for (Node n : Path) {
-            if (!this.Graph.getEndList().contains(n) && n != this.Graph.getInitial()) {
+            if (!this.Graph.getGoals().contains(n) && n != this.Graph.getInitial()) {
                 int x = n.getX(); int y = n.getY();
                 paintRectangle(graphics, x, y);   
             }

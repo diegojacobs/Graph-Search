@@ -26,58 +26,47 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
-                      <Component id="bfsButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Component id="dfsButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="aStarButton" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="110" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="uploadButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="resizeNTextField" min="-2" pref="106" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="discretizeButton" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="bfsButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="dfsButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                      <Component id="aStarButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="uploadButton" min="-2" max="-2" attributes="0"/>
-                  <Component id="imageSelected" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-              <Component id="imageDiscretized" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-              <Component id="uploadButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="imageDiscretized" max="32767" attributes="0"/>
-                  <Component id="imageSelected" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="discretizeButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="resizeNTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="uploadButton" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="discretizeButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="resizeNTextField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="48" max="32767" attributes="0"/>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="dfsButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="bfsButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="aStarButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -91,21 +80,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uploadButtonActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JPanel" name="imageSelected">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="390" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Component class="javax.swing.JTextField" name="resizeNTextField">
     </Component>
     <Component class="javax.swing.JButton" name="discretizeButton">
@@ -116,21 +90,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="discretizeButtonActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JPanel" name="imageDiscretized">
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="370" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="387" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
     <Component class="javax.swing.JButton" name="bfsButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="BFS"/>
@@ -151,6 +110,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="A*"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aStarButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>

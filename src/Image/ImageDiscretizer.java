@@ -28,41 +28,10 @@ public class ImageDiscretizer {
         
         try {
             BufferedImage originalBufferedImage = ImageIO.read(originalImage);
-            saveDiscretizedImage(originalBufferedImage);
+            this.ImageDiscretized = Discretize(originalBufferedImage);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
-    }
-
-    public void setPixelARGB(int pixel) {
-        int alpha = (pixel >> 24) & 0xff;
-        int red = (pixel >> 16) & 0xff;
-        int green = (pixel >> 8) & 0xff;
-        int blue = (pixel) & 0xff;
-    }
-
-    private void saveDiscretizedImage(BufferedImage image) {
-        BufferedImage discretized = Discretize(image);
-        
-        int fixedX = discretized.getWidth();
-        int fixedY = discretized.getHeight();
-
-        for (int i = 0; i < fixedY; i++) {
-            for (int j = 0; j < fixedX; j++) {
-                int pixel = discretized.getRGB(j, i);
-                setPixelARGB(pixel);
-            }
-        }
-
-       File outputfile = new File("labdis.png");
-       
-        try {
-            ImageIO.write(discretized, "png", outputfile);
-        } catch (IOException ex) {
-            Logger.getLogger(ImageDiscretizer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-       this.ImageDiscretized = discretized;
     }
 
     public BufferedImage Discretize(BufferedImage originalImage) {

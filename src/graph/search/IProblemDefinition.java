@@ -13,8 +13,8 @@ import java.util.ArrayList;
  */
 public interface IProblemDefinition {
     public ArrayList<Action> actions(Node node);
-    public float stepCost(Node fromNode, Node toNode, Action action); 
-    public float pathCost(ArrayList<Node> path);
+    public double stepCost(Node fromNode, Node toNode, Action action); 
+    public double pathCost(ArrayList<Node> path);
     public boolean goalTest(Node goal);
     public Node result(Node node, Action action);       
 }

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Graph {
     private Node Initial;
-    private ArrayList<Node> EndList;
+    private ArrayList<Node> Goals;
     private ArrayList<ArrayList<Node>> Graph;
     private int SizeY;
     private int SizeX;
@@ -23,7 +23,7 @@ public class Graph {
     public Graph(int sizeX, int sizeY){
         this.SizeX = sizeX;
         this.SizeY = sizeY;
-        this.EndList = new ArrayList<>();
+        this.Goals = new ArrayList<>();
     }
 
     public ArrayList<ArrayList<Node>> getGraph() {
@@ -62,12 +62,12 @@ public class Graph {
         this.Initial = Initial;
     }
 
-    public ArrayList<Node> getEndList() {
-        return EndList;
+    public ArrayList<Node> getGoals() {
+        return Goals;
     }
 
-    public void setEndList(ArrayList<Node> EndList) {
-        this.EndList = EndList;
+    public void setGoals(ArrayList<Node> Goals) {
+        this.Goals = Goals;
     }
     
     public void Create() 
@@ -98,7 +98,7 @@ public class Graph {
                     this.Initial = this.Graph.get(y).get(x);
                 
                 if (color == Color.GREEN)
-                    this.EndList.add(this.Graph.get(y).get(x)); 
+                    this.Goals.add(this.Graph.get(y).get(x)); 
             }
         }
     }

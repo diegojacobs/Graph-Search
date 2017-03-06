@@ -9,12 +9,14 @@ package graph.search;
  *
  * @author Diego Jacobs
  */
-public class Node {
+public class Node implements Comparable<Node>{
     private Node root;
     private int x;
     private int y;
     private Boolean Blocked;
     private Graph Graph;
+    private double Cost;
+    private double Heuristic;
     
     public Node(int x, int y, Graph graph) {
         this.x = x;
@@ -67,9 +69,39 @@ public class Node {
         this.y = y;
     }
 
+    public double getCost() {
+        return Cost;
+    }
+
+    public void setCost(double cost) {
+        this.Cost = cost;
+    }
+
+    public double getHeuristic() {
+        return Heuristic;
+    }
+
+    public void setHeuristic(double heuristic) {
+        this.Heuristic = heuristic;
+    }
+
     @Override
     public String toString()
     {
         return "("+this.x +" ," + this.y +")";
+    }
+
+    @Override
+    public int compareTo(Node other) {
+        double distanceToGoal = this.getCost() + this.getHeuristic();
+        double otherDistanceFromGoal = other.getCost() + other.getHeuristic();
+        
+        if (distanceToGoal < otherDistanceFromGoal)
+                return -1;
+        
+        if (distanceToGoal > otherDistanceFromGoal)
+                return 1;
+        
+        return 0;
     }
 }

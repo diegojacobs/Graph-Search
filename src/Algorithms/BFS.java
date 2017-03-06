@@ -76,6 +76,10 @@ public class BFS implements IProblemDefinition{
             
             
             if (goalTest(last)) { 
+                for(int i=0; i<path.size(); i++){
+                    path.get(i).setCost(i);
+                }
+                
                 this.FinalPath = path;
                 break;
             }
@@ -100,7 +104,7 @@ public class BFS implements IProblemDefinition{
     }
 
     @Override
-    public float stepCost(Node fromNode, Node toNode, Action action) {
+    public double stepCost(Node fromNode, Node toNode, Action action) {
         if(fromNode.equals(action.getFrom()) && toNode.equals(action.getTo())){
             return 1;
         }
@@ -109,7 +113,7 @@ public class BFS implements IProblemDefinition{
     }
 
     @Override
-    public float pathCost(ArrayList<Node> path) {
+    public double pathCost(ArrayList<Node> path) {
         float cost = 0;
         
         for(int i = 0; i < path.size(); i++){
@@ -122,7 +126,7 @@ public class BFS implements IProblemDefinition{
 
     @Override
     public boolean goalTest(Node goal) {
-        return this.Graph.getEndList().contains(goal);
+        return this.Graph.getGoals().contains(goal);
     }
 
     @Override

@@ -5,6 +5,7 @@
  */
 package UI;
 
+import Algorithms.AStar;
 import Algorithms.BFS;
 import Image.ImageDiscretizer;
 import Algorithms.DFS;
@@ -46,10 +47,8 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         uploadButton = new javax.swing.JButton();
-        imageSelected = new javax.swing.JPanel();
         resizeNTextField = new javax.swing.JTextField();
         discretizeButton = new javax.swing.JButton();
-        imageDiscretized = new javax.swing.JPanel();
         bfsButton = new javax.swing.JButton();
         dfsButton = new javax.swing.JButton();
         aStarButton = new javax.swing.JButton();
@@ -64,34 +63,12 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout imageSelectedLayout = new javax.swing.GroupLayout(imageSelected);
-        imageSelected.setLayout(imageSelectedLayout);
-        imageSelectedLayout.setHorizontalGroup(
-            imageSelectedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
-        );
-        imageSelectedLayout.setVerticalGroup(
-            imageSelectedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
         discretizeButton.setText("Discretizar");
         discretizeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 discretizeButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout imageDiscretizedLayout = new javax.swing.GroupLayout(imageDiscretized);
-        imageDiscretized.setLayout(imageDiscretizedLayout);
-        imageDiscretizedLayout.setHorizontalGroup(
-            imageDiscretizedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 370, Short.MAX_VALUE)
-        );
-        imageDiscretizedLayout.setVerticalGroup(
-            imageDiscretizedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 387, Short.MAX_VALUE)
-        );
 
         bfsButton.setText("BFS");
         bfsButton.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +85,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         aStarButton.setText("A*");
+        aStarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aStarButtonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("N:");
 
@@ -118,48 +100,39 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(bfsButton)
-                        .addGap(73, 73, 73)
-                        .addComponent(dfsButton)
-                        .addGap(61, 61, 61)
-                        .addComponent(aStarButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
+                        .addContainerGap()
+                        .addComponent(uploadButton)
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(resizeNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(discretizeButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(uploadButton)
-                    .addComponent(imageSelected, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(94, 94, 94)
-                .addComponent(imageDiscretized, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 19, Short.MAX_VALUE))
+                        .addComponent(discretizeButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(bfsButton)
+                        .addGap(73, 73, 73)
+                        .addComponent(dfsButton)
+                        .addGap(61, 61, 61)
+                        .addComponent(aStarButton)))
+                .addGap(0, 23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(uploadButton)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(imageDiscretized, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(imageSelected, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(discretizeButton)
-                    .addComponent(resizeNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(discretizeButton)
+                        .addComponent(resizeNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(uploadButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dfsButton)
                     .addComponent(bfsButton)
                     .addComponent(aStarButton))
-                .addGap(78, 78, 78))
+                .addGap(23, 23, 23))
         );
 
         pack();
@@ -173,9 +146,6 @@ public class Principal extends javax.swing.JFrame {
         
         if(returnValue == JFileChooser.APPROVE_OPTION){
             this.image = fileChooser.getSelectedFile();
-            imageSelected = new JPanel();
-            JLabel pic = new JLabel(new ImageIcon(this.image.getAbsolutePath()));
-            imageSelected.add(pic);
         }
     }//GEN-LAST:event_uploadButtonActionPerformed
 
@@ -218,14 +188,26 @@ public class Principal extends javax.swing.JFrame {
         window.add(new DisplayGraph(size, size, imageDiscretizer.getImageDiscretized(), dfs.getGraph(), dfs.getFinalPath()));
     }//GEN-LAST:event_dfsButtonActionPerformed
 
+    private void aStarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aStarButtonActionPerformed
+        // TODO add your handling code here:
+        ImageDiscretizer imageDiscretizer = new ImageDiscretizer(image, size);
+        AStar aStar = new AStar(size, size, imageDiscretizer.getImageDiscretized());
+        aStar.Solve();
+        
+        JFrame window = new JFrame();
+        window.setSize(400, 400);
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+        window.setTitle("A* Solution");
+        window.add(new DisplayGraph(size, size, imageDiscretizer.getImageDiscretized(), aStar.getGraph(), aStar.getFinalPath()));
+    }//GEN-LAST:event_aStarButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aStarButton;
     private javax.swing.JButton bfsButton;
     private javax.swing.JButton dfsButton;
     private javax.swing.JButton discretizeButton;
-    private javax.swing.JPanel imageDiscretized;
-    private javax.swing.JPanel imageSelected;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField resizeNTextField;
     private javax.swing.JButton uploadButton;
