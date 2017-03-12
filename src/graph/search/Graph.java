@@ -143,7 +143,6 @@ public class Graph {
     }
     
     public Color getColor(int pixel) {
-        
         int red = (pixel >> 16) & 0xff;
         int green = (pixel >> 8) & 0xff;
         int blue = (pixel) & 0xff;

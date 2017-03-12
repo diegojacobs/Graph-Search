@@ -16,6 +16,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -30,11 +32,14 @@ import javax.swing.JPanel;
 public class Principal extends javax.swing.JFrame {
     private int size;
     private File image;
+    private BufferedImage imageDiscretized;
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        jLabel2.setVisible(false);
+        jLabel3.setVisible(false);
     }
 
     /**
@@ -53,6 +58,9 @@ public class Principal extends javax.swing.JFrame {
         dfsButton = new javax.swing.JButton();
         aStarButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,29 +101,43 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setText("N:");
 
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setText("jLabel3");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manhattan", "Breaking Ties" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(uploadButton)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resizeNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(discretizeButton)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(uploadButton)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(resizeNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(discretizeButton))
+                        .addComponent(jLabel2)
+                        .addGap(408, 408, 408)
+                        .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
+                        .addGap(302, 302, 302)
                         .addComponent(bfsButton)
                         .addGap(73, 73, 73)
                         .addComponent(dfsButton)
                         .addGap(61, 61, 61)
-                        .addComponent(aStarButton)))
-                .addGap(0, 23, Short.MAX_VALUE))
+                        .addComponent(aStarButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,12 +149,17 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(resizeNTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1))
                     .addComponent(uploadButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 506, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dfsButton)
                     .addComponent(bfsButton)
-                    .addComponent(aStarButton))
-                .addGap(23, 23, 23))
+                    .addComponent(aStarButton)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -146,6 +173,16 @@ public class Principal extends javax.swing.JFrame {
         
         if(returnValue == JFileChooser.APPROVE_OPTION){
             this.image = fileChooser.getSelectedFile();
+            
+            try {
+                BufferedImage originalBufferedImage = ImageIO.read(this.image);
+                ImageIcon icon = new ImageIcon(originalBufferedImage);
+                jLabel2.setIcon(icon);
+                jLabel2.setVisible(true);
+                jLabel2.setText("");
+            } catch (IOException ex) {
+                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_uploadButtonActionPerformed
 
@@ -154,10 +191,14 @@ public class Principal extends javax.swing.JFrame {
         if(!image.equals(null)){
             if(!resizeNTextField.getText().isEmpty()){
                 this.size = Integer.parseInt(resizeNTextField.getText());
-                ImageDiscretizer imageReader = new ImageDiscretizer(this.image, this.size);
+                ImageDiscretizer imageDiscretizer = new ImageDiscretizer(this.image, this.size);
+                imageDiscretized = imageDiscretizer.getImageDiscretized();
+                ImageIcon icon = new ImageIcon(imageDiscretized);
+                jLabel3.setIcon(icon);
+                jLabel3.setVisible(true);
+                jLabel3.setText("");
             }
         }
-        
     }//GEN-LAST:event_discretizeButtonActionPerformed
 
     private void bfsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bfsButtonActionPerformed
@@ -190,9 +231,10 @@ public class Principal extends javax.swing.JFrame {
 
     private void aStarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aStarButtonActionPerformed
         // TODO add your handling code here:
+        int type = jComboBox1.getSelectedIndex() + 1;
         ImageDiscretizer imageDiscretizer = new ImageDiscretizer(image, size);
         AStar aStar = new AStar(size, size, imageDiscretizer.getImageDiscretized());
-        aStar.Solve();
+        aStar.Solve(type);
         
         JFrame window = new JFrame();
         window.setSize(400, 400);
@@ -208,7 +250,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton bfsButton;
     private javax.swing.JButton dfsButton;
     private javax.swing.JButton discretizeButton;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField resizeNTextField;
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables

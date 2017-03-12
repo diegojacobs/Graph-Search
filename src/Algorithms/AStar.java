@@ -47,7 +47,7 @@ public class AStar implements IProblemDefinition{
     }
     
     
-    public void Solve() {
+    public void Solve(int type) {
         PriorityQueue<Node> waitingNodes = new PriorityQueue<>();
 
         this.Graph.getInitial().setCost(0);
@@ -82,7 +82,7 @@ public class AStar implements IProblemDefinition{
                         if (!waitingNodes.contains(next)|| cost < next.getCost()){
                             next.setRoot(current);
                             next.setCost(cost); 
-                            next.setHeuristic(Heuristic(next, this.Graph.getGoals()));
+                            next.setHeuristic(Heuristic(next, this.Graph.getGoals(), type));
 
                            waitingNodes.add(next);
                         }
@@ -94,7 +94,7 @@ public class AStar implements IProblemDefinition{
     //Heuritics
     //Breaking Ties
     //Manhattan
-    private double Heuristic(Node current, ArrayList<Node> goals) {
+    private double Heuristic(Node current, ArrayList<Node> goals, Integer type) {
        
         double D = 1.0; 
         double minHypotenuse = Math.sqrt(this.Graph.getSizeX() * this.Graph.getSizeX()  + this.Graph.getSizeY() * this.Graph.getSizeY());
@@ -119,8 +119,12 @@ public class AStar implements IProblemDefinition{
         double dy1 = current.getY() - goal.getY();
         double dx2 = this.Graph.getInitial().getX() - goal.getX();
         double dy2 = this.Graph.getInitial().getY() - goal.getY();
-
-        return (D * (dx + dy)) + Math.abs(dx1 * dy2 -  dx2 * dy1); //Manhattan + Breaking Ties
+        
+        
+        if(type == 1)
+            return (D * (dx + dy)); //Manhattan 
+        
+        return Math.abs(dx1 * dy2 -  dx2 * dy1);// Breaking Ties
        
     }
     
