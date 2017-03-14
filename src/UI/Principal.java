@@ -39,7 +39,6 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         jLabel2.setVisible(false);
-        jLabel3.setVisible(false);
     }
 
     /**
@@ -59,7 +58,6 @@ public class Principal extends javax.swing.JFrame {
         aStarButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,8 +101,6 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel2.setText("jLabel2");
 
-        jLabel3.setText("jLabel3");
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manhattan", "Breaking Ties" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -125,11 +121,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(408, 408, 408)
-                        .addComponent(jLabel3))
+                        .addComponent(jLabel2))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(302, 302, 302)
+                        .addGap(19, 19, 19)
                         .addComponent(bfsButton)
                         .addGap(73, 73, 73)
                         .addComponent(dfsButton)
@@ -137,7 +131,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(aStarButton)
                         .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,16 +144,14 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addComponent(uploadButton))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 506, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 500, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dfsButton)
                     .addComponent(bfsButton)
                     .addComponent(aStarButton)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19))
+                .addGap(25, 25, 25))
         );
 
         pack();
@@ -193,10 +185,6 @@ public class Principal extends javax.swing.JFrame {
                 this.size = Integer.parseInt(resizeNTextField.getText());
                 ImageDiscretizer imageDiscretizer = new ImageDiscretizer(this.image, this.size);
                 imageDiscretized = imageDiscretizer.getImageDiscretized();
-                ImageIcon icon = new ImageIcon(imageDiscretized);
-                jLabel3.setIcon(icon);
-                jLabel3.setVisible(true);
-                jLabel3.setText("");
             }
         }
     }//GEN-LAST:event_discretizeButtonActionPerformed
@@ -253,7 +241,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField resizeNTextField;
     private javax.swing.JButton uploadButton;
     // End of variables declaration//GEN-END:variables

@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -77,11 +78,15 @@ public class DisplayGraph extends JPanel{
     
     private void paintPath(Graphics graphics) {       
         graphics.setColor(Color.MAGENTA);
-        for (Node n : Path) {
-            if (!this.Graph.getGoals().contains(n) && n != this.Graph.getInitial()) {
-                int x = n.getX(); int y = n.getY();
-                paintRectangle(graphics, x, y);   
-            }
-       }
+        if(Path == null){
+            JOptionPane.showMessageDialog(null, "Invalid.");
+        }
+        else
+            for (Node n : Path) {
+                if (!this.Graph.getGoals().contains(n) && n != this.Graph.getInitial()) {
+                    int x = n.getX(); int y = n.getY();
+                    paintRectangle(graphics, x, y);   
+                }
+           }
     }
 }
